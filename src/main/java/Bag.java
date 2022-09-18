@@ -5,6 +5,7 @@
  * 1. Introduction to Java helpful.
  */
 
+import java.util.Arrays;
 public abstract class Bag {
     /*
      * TODO: Create the following private instance variables
@@ -13,19 +14,27 @@ public abstract class Bag {
      *       - an int named capacity
      *       - an array of Strings named contents
      */
-
-
+     private String color;
+     private int numberOfContents;
+     private int capacity;
+     private String[] contents;
 
 
     /*
      * TODO: Create a constructor that takes two arguments:
-     *       - a String representing the Bag's colour
+     *       - a String representing the Bag's color
      *       - an int representing the Bag's capacity
      *
      * The other attributes (private instance variables) should
      * be empty (e.g. numberOfContents is 0 and an empty String array for
      * its contents.)
      */
+     public Bag(String color, int capacity) {
+         this.color = color;
+         this.capacity = capacity;
+         this.contents = new String[capacity];
+         this.numberOfContents = 0;
+     }
 
 
 
@@ -38,17 +47,26 @@ public abstract class Bag {
      *           - getCapacity
      */
 
+    public String getColor() {
+        return color;
+    }
 
+    public int getCapacity() {
+        return capacity;
+    }
 
+    public int getNumberOfContents() {
+        return numberOfContents;
+    }
 
     /*
      * TODO: Create a setter function called setColor which sets the
      *       color of this bag to the given color.
      */
 
-
-
-
+    public void setColor(String color) {
+        this.color = color;
+    }
 
     /*
      * TODO: Create a method called addItem that takes in a String
@@ -60,6 +78,17 @@ public abstract class Bag {
      *       This method should return true if the item was added
      *       and false otherwise.
      */
+
+    public boolean addItem(String item) {
+        if (numberOfContents < capacity) {
+            contents[numberOfContents] = item;
+            numberOfContents++;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
 
 
@@ -75,6 +104,18 @@ public abstract class Bag {
      *
      * @return
      */
+     public String popItem() {
+         if (numberOfContents > 0) {
+             numberOfContents--;
+             String to_return = contents[numberOfContents];
+             contents[numberOfContents] = null;
+             return to_return;
+         }
+         else {
+             return null;
+         }
+     }
+
 
 
 
@@ -87,6 +128,7 @@ public abstract class Bag {
      */
     public void increaseCapacity(int n) {
         // TODO: Implement this method.
+        this.capacity += n;
 
     }
 
